@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">LABRegistroGuardias</string>
+
+    <!-- 0 = Recluta, 1 = Capitán, 2 = Veterano -->
+    <string-array name="rangos_militares">
+        <item>Recluta</item>
+        <item>Capitán</item>
+        <item>Veterano</item>
+    </string-array>
+
 </resources>

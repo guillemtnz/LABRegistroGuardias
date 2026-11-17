@@ -36,7 +36,7 @@
         android:id="@+id/spinnerRango"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#2B2B33"
+        android:background="#A29BFE"
         android:spinnerMode="dropdown"
         android:layout_marginBottom="16dp"/>
 
