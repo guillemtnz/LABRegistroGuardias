@@ -1,19 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#121214"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="REGISTRO DE GUARDIAS DE LA CIUDADELA"
+        android:textColor="#A29BFE"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Nombre del efectivo (KEY_SOLDADO) -->
+    <EditText
+        android:id="@+id/etSoldado"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Nombre del Efectivo"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#75757A"
+        android:backgroundTint="#6C5CE7"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Rango militar (KEY_RANGO) -->
+    <Spinner
+        android:id="@+id/spinnerRango"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#2B2B33"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Estado del turno (KEY_ESTADO) -->
+    <Switch
+        android:id="@+id/switchEstado"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="En Guardia"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="240dp"
+        android:layout_height="54dp"
+        android:text="Guardar Registro"
+        android:backgroundTint="#6C5CE7"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:id="@+id/tvUltimoRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Último registro guardado: Ninguno"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"/>
+
+</LinearLayout>
