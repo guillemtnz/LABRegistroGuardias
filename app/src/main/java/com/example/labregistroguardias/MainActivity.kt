@@ -55,10 +55,20 @@ class MainActivity : AppCompatActivity() {
 
                 // Se limpia el EditText después de guardar con apply()
                 etSoldado.text.clear()
+                etSoldado.clearFocus()
                 tvUltimoRegistro.text = "Último registro guardado: $soldado"
                 Toast.makeText(this, "Registro guardado en RegistroGuardia.xml", Toast.LENGTH_SHORT).show()
             } else {
                 etSoldado.error = "El nombre no puede estar vacío"
+            }
+        }
+
+        // Cambia el texto del Switch según el estado del turno
+        switchEstado.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                switchEstado.text = "En Guardia"
+            } else {
+                switchEstado.text = "En Reposo"
             }
         }
     }

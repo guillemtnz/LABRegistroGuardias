@@ -29,6 +29,7 @@
         android:textColorHint="#75757A"
         android:backgroundTint="#6C5CE7"
         android:inputType="textPersonName"
+        android:imeOptions="actionDone"
         android:layout_marginBottom="16dp"/>
 
     <!-- Rango militar (KEY_RANGO) -->
@@ -45,7 +46,7 @@
         android:id="@+id/switchEstado"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="En Guardia"
+        android:text="En Reposo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:layout_marginBottom="32dp"/>
