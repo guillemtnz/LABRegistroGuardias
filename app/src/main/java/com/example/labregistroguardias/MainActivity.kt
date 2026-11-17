@@ -71,4 +71,29 @@ class MainActivity : AppCompatActivity() {
         editor.putBoolean("KEY_ESTADO", estado)
         editor.apply() // Guarda de forma asíncrona sin bloquear la interfaz
     }
+
+    // Cada vez que la pantalla vuelve a estar visible se cargan los datos guardados
+    override fun onResume() {
+        super.onResume()
+        cargarRegistro()
+    }
+
+    private fun cargarRegistro() {
+        val prefs = getSharedPreferences("RegistroGuardia", Context.MODE_PRIVATE)
+
+        // Si todavía no hay nada guardado se usan los valores por defecto
+        val soldado = prefs.getString("KEY_SOLDADO", "")
+        val rango = prefs.getInt("KEY_RANGO", 0)          // 0 = Recluta
+        val estado = prefs.getBoolean("KEY_ESTADO", false) // false = En Reposo
+
+        etSoldado.setText(soldado)
+        spinnerRango.setSelection(rango)
+        switchEstado.isChecked = estado
+
+        if (soldado.isNullOrEmpty()) {
+            tvUltimoRegistro.text = "Último registro guardado: Ninguno"
+        } else {
+            tvUltimoRegistro.text = "Último registro guardado: $soldado"
+        }
+    }
 }
