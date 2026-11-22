@@ -2,10 +2,12 @@ package com.example.labregistroguardias
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Environment
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 import java.io.FileNotFoundException
 
 class PergaminosActivity : AppCompatActivity() {
@@ -69,5 +71,69 @@ class PergaminosActivity : AppCompatActivity() {
                 etNombreArchivo.error = "Introduce el nombre del pergamino a leer"
             }
         }
+
+        // Escritura en el almacenamiento externo privado (Documents/)
+        btnGuardarExterno.setOnClickListener {
+            val nombre = etNombreArchivo.text.toString().trim()
+            val texto = etContenido.text.toString()
+
+            if (!esAlmacenamientoExternoEscribible()) {
+                Toast.makeText(this, "Error: el almacenamiento externo no está montado", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (nombre.isNotEmpty()) {
+                try {
+                    val rutaDirectorio = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+                    val archivo = File(rutaDirectorio, nombre)
+                    archivo.writeText(texto)
+                    Toast.makeText(this, "Mapa guardado en Android/data/.../Documents/", Toast.LENGTH_SHORT).show()
+                    etContenido.text.clear()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error al escribir: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                etNombreArchivo.error = "Introduce el nombre del mapa"
+            }
+        }
+
+        // Lectura desde el almacenamiento externo privado (Documents/)
+        btnLeerExterno.setOnClickListener {
+            val nombre = etNombreArchivo.text.toString().trim()
+
+            if (!esAlmacenamientoExternoLeible()) {
+                Toast.makeText(this, "Error: soporte no disponible para lectura", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (nombre.isNotEmpty()) {
+                try {
+                    val rutaDirectorio = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+                    val archivo = File(rutaDirectorio, nombre)
+
+                    if (archivo.exists()) {
+                        etContenido.setText(archivo.readText())
+                        Toast.makeText(this, "Mapa cargado correctamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        etNombreArchivo.error = "Ese mapa no existe en los documentos externos"
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error al leer: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                etNombreArchivo.error = "Especifica qué mapa quieres consultar"
+            }
+        }
+    }
+
+    // Comprobaciones del estado del almacenamiento externo
+    private fun esAlmacenamientoExternoEscribible(): Boolean {
+        val estado = Environment.getExternalStorageState()
+        return Environment.MEDIA_MOUNTED == estado
+    }
+
+    private fun esAlmacenamientoExternoLeible(): Boolean {
+        val estado = Environment.getExternalStorageState()
+        return Environment.MEDIA_MOUNTED == estado || Environment.MEDIA_MOUNTED_READ_ONLY == estado
     }
 }
