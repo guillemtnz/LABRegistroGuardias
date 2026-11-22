@@ -67,4 +67,15 @@
         android:textColor="#9E9E9E"
         android:textSize="14sp"/>
 
+    <!-- Acceso al laboratorio de ficheros -->
+    <Button
+        android:id="@+id/btnIrPergaminos"
+        android:layout_width="240dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:text="Los Pergaminos"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="#E17055"/>
+
 </LinearLayout>

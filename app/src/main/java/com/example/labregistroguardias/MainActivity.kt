@@ -1,6 +1,7 @@
 package com.example.labregistroguardias
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -70,6 +71,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 switchEstado.text = "En Reposo"
             }
+        }
+
+        // Abre la pantalla de los pergaminos (laboratorio de ficheros)
+        val btnIrPergaminos = findViewById<Button>(R.id.btnIrPergaminos)
+        btnIrPergaminos.setOnClickListener {
+            val intent = Intent(this, PergaminosActivity::class.java)
+            startActivity(intent)
         }
     }
 
